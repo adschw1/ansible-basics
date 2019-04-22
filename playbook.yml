@@ -1,0 +1,20 @@
+---
+- name: Server Farming Simulator
+  hosts: webservers
+  remote_user: mininet
+  gather_facts: False
+  connection: local
+  tasks:
+    - name: Host
+      debug: 
+        msg: '{{inventory_hostname}} {{ansible_host}}'
+    - name: Verify Reachability
+      ping: 
+    # - name: Install Server and Verify
+    #   become: yes
+    #   apt:
+    #     upgrade: yes
+    #     update_cache: yes
+    #     apt-get update && apt-get -y upgrade
+    #     apt-get -y install apache2
+    #     /usr/sbin/apache2 -v

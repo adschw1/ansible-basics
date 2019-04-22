@@ -1,0 +1,9 @@
+---
+- hosts: webservers
+  user: mininet
+  vars:
+    username: mininet
+    password: mininet
+    public_key: ~/.ssh/mininet_proj.pub
+  roles:
+    - nginx
