@@ -1,9 +1,8 @@
 ---
 - hosts: webservers
-  user: mininet
-  vars:
-    username: mininet
-    password: mininet
-    public_key: ~/.ssh/mininet_proj.pub
+  # vars:
+  #   username: asdf
+  #   password: mininet
+  #   public_key: ~/.ssh/AnsibleProject.pub
   roles:
     - nginx
