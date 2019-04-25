@@ -1,8 +1,4 @@
 ---
 - hosts: webservers
-  # vars:
-  #   username: asdf
-  #   password: mininet
-  #   public_key: ~/.ssh/AnsibleProject.pub
   roles:
     - nginx
