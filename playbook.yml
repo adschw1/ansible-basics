@@ -10,6 +10,8 @@
         msg: '{{inventory_hostname}} {{ansible_host}}'
     - name: Verify Reachability
       ping: 
+    - name: Change Hostname
+      hostname: name={{ inventory_hostname }}
     # - name: Install Server and Verify
     #   become: yes
     #   apt:

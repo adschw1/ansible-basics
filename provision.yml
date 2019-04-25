@@ -1,4 +1,7 @@
 ---
 - hosts: webservers
+  remote_user: mininet
+  connection: local
+  gather_facts: no
   roles:
     - nginx
