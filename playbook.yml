@@ -1,26 +1,7 @@
 ---
-- name: Server Farming Simulator
-  hosts: webservers
+- hosts: webservers
   remote_user: root
-  gather_facts: True
+  gather_facts: False
   tasks:
-    # - set_fact:
-    #     remote_user: "{{ ansible_user }}"
-    #     ansible_ssh_pass: "{{ ansible_ssh_pass}}"
-    - name: Host
-      debug: 
-        msg: '{{inventory_hostname}} {{ansible_host}}'
-    - name: Verify Reachability
-      ping: 
-      remote_user: root
     - name: Change Hostname
-      remote_user: root
       hostname: name={{ inventory_hostname }}
-    # - name: Install Server and Verify
-    #   become: yes
-    #   apt:
-    #     upgrade: yes
-    #     update_cache: yes
-    #     apt-get update && apt-get -y upgrade
-    #     apt-get -y install apache2
-    #     /usr/sbin/apache2 -v
