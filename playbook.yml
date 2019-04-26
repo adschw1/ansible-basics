@@ -1,16 +1,20 @@
 ---
 - name: Server Farming Simulator
   hosts: webservers
-  remote_user: mininet
-  gather_facts: False
-  connection: local
+  remote_user: root
+  gather_facts: True
   tasks:
+    # - set_fact:
+    #     remote_user: "{{ ansible_user }}"
+    #     ansible_ssh_pass: "{{ ansible_ssh_pass}}"
     - name: Host
       debug: 
         msg: '{{inventory_hostname}} {{ansible_host}}'
     - name: Verify Reachability
       ping: 
+      remote_user: root
     - name: Change Hostname
+      remote_user: root
       hostname: name={{ inventory_hostname }}
     # - name: Install Server and Verify
     #   become: yes
