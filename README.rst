@@ -145,6 +145,12 @@ Next you'll need to edit the /etc/ssh/sshd_config file on your target machine::
 
 This line will allow Ansible to ssh in as root.
 
+Ensure the ``ssh`` service is running::
+
+    systemctl status ssh
+    # or
+    service ssh status
+
 
 Setting up your Playbook and Inventory for SSH
 ----------------------------------------------
