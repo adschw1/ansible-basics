@@ -14,11 +14,14 @@
         group: root
         mode: 0644
     - name: Install Latest nginx
-      apt: name=nginx state=latest
+      apt:
+        name: nginx
+        state: latest
+        update_cache: yes
     - name: Start nginx
       service:
-          name: nginx
-          state: started
+        name: nginx
+        state: started
     # - name: copy the nginx config file and restart nginx
     #   copy:
     #     src: /home/mininet/static_site.cfg
