@@ -113,3 +113,62 @@ And if you're too lazy to even type in two passwords, we can switch out the ``@p
 
 The ``--vault-id`` can be used in lieu of the ``--vault-password-file`` or ``--ask-vault-pass`` options, or it can be used in combination with them.
 
+
+Using SSH Keys in Ansible
+=========================
+
+Setup your environment for SSH
+------------------------------
+
+If your target machine doesn't have a ``.ssh`` folder you'll want to create it under the root directory::
+
+    sudo su
+    cd
+    mkdir .ssh
+    chmod 700 .ssh
+    touch .ssh/authorized_keys
+    chmod 644 .ssh/authorized_keys
+    
+You'll want to add the public key of the host you're sshing from into the authorized keys file
+
+Make sure they keys on your Ansible host have the correct permissions::
+
+    chmod 600 for private keys
+    chmod 644 for public keys
+    chmod 700 for ssh directory
+
+Next you'll need to edit the /etc/ssh/sshd_config file on your target machine::
+
+    vim /etc/ssh/sshd_config
+    # add the line
+    PermitRootLogin yes
+
+This line will allow Ansible to ssh in as root.
+
+
+Setting up your Playbook and Inventory for SSH
+----------------------------------------------
+
+In your playbook you will need to add the field ``remote_user: root`` somewhere between hosts and tasks::
+
+    ---
+    - hosts: webservers
+      connection: local
+      remote_user: root
+      gather_facts: False
+      tasks:
+
+In your inventory you will need to add the field "ansible_ssh_private_key_file" for each host or under global variables::
+
+    [servers]
+    host1 ansible_ssh_private_key_file=/root/.ssh/id_rsa
+    host2 ansible_ssh_private_key_file=/root/.ssh/id_rsa
+    # or
+    [servers:vars]
+    ansible_ssh_private_key_file=/root/.ssh/id_rsa
+
+Finally under your ``ansible.cfg`` you will need to disable ``host_key_checking`` this is what prompts you to verify the fingerprint, which you won't want to manually do every single time::
+
+    [defaults]
+    host_key_checking=False
+
