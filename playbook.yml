@@ -50,7 +50,6 @@
         regexp: "^user"
         line: "user {{ inventory_hostname }};"
         state: present
-      notify: restart nginx 
     - name: Restart nginx
       service:
         name: nginx
