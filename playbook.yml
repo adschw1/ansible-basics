@@ -3,12 +3,13 @@
   remote_user: root
   gather_facts: False
   tasks:
-    - name: Change Hostname
+    - name: Edit /etc/hostname
       hostname: name={{ inventory_hostname }}
-    - lineinfile:
-      path: /etc/hosts
-      regexp: '^127\.0\.1\.1'
-      line: '127.0.1.1 {{ inventory_hostname }}'
-      owner: root
-      group: root
-      mode: 0644
+    - name: Edit /etc/hosts 
+      lineinfile:
+        path: /etc/hosts
+        regexp: '^127\.0\.1\.1'
+        line: '127.0.1.1 {{ inventory_hostname }}'
+        owner: root
+        group: root
+        mode: 0644
