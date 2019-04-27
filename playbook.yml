@@ -44,6 +44,11 @@
     #   copy:
     #     src: /home/mininet/static-site-src/
     #     dest: /home/mininet/static-site
+    - name: Remove IPv6
+      lineinfile:
+        path: /etc/nginx/sites-enabled/default
+        regexp: '^ipv6only'
+        line: '# listen [::]:80 default_server ipv6only=on;'
     - name: Set Nginx user
       lineinfile: 
         dest: /etc/nginx/nginx.conf
