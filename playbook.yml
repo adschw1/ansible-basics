@@ -44,7 +44,18 @@
     #   copy:
     #     src: /home/mininet/static-site-src/
     #     dest: /home/mininet/static-site
+    - name: Set Nginx user
+      lineinfile: 
+        dest: /etc/nginx/nginx.conf
+        regexp: "^user"
+        line: "user {{ inventory_hostname }};"
+        state: present
+      notify: restart nginx 
     - name: Restart nginx
       service:
         name: nginx
         state: restarted
+    - name: Reload nginx
+      service:
+        name: nginx
+        state: reloaded
