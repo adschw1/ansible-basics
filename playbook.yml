@@ -13,6 +13,15 @@
         owner: root
         group: root
         mode: 0644
+    - name: Configure interface
+      net_interface:
+        name: eth0
+        mtu: 1440
+        enabled: True
+    - name: Upgrade all packages to the latest version
+      apt:
+        name: "*"
+        state: latest
     - name: Install Latest nginx
       apt: name=nginx state=latest
     - name: Start nginx
