@@ -15,10 +15,13 @@
         mode: 0644
     - name: Configure interface
       command: /sbin/ifconfig eth0 mtu 1440 up
-    - name: Upgrade all packages to the latest version
-      apt:
-        name: "*"
-        state: latest
+    - name: Update
+      command: /usr/bin/apt-get update --force-yes
+    # - name: Upgrade all packages to the latest version
+    #   apt:
+    #     name: "*"
+    #     force: yes
+    #     state: latest
     - name: Install Latest nginx
       apt:
         name: nginx
