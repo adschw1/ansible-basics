@@ -13,3 +13,26 @@
         owner: root
         group: root
         mode: 0644
+    - name: Install Latest nginx
+      apt: name=nginx state=latest
+    - name: Start nginx
+      service:
+          name: nginx
+          state: started
+    # - name: copy the nginx config file and restart nginx
+    #   copy:
+    #     src: /home/mininet/static_site.cfg
+    #     dest: /etc/nginx/sites-available/static_site.cfg
+    # - name: create symlink
+    #   file:
+    #     src: /etc/nginx/sites-available/static_site.cfg
+    #     dest: /etc/nginx/sites-enabled/default
+    #     state: link
+    # - name: copy the content of the web site
+    #   copy:
+    #     src: /home/mininet/static-site-src/
+    #     dest: /home/mininet/static-site
+    - name: Restart nginx
+      service:
+        name: nginx
+        state: restarted
