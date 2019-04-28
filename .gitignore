@@ -1,3 +1,4 @@
 *.retry
 *.json
 logs
+index*
