@@ -109,7 +109,7 @@ We can tell Ansible to prompt us for each password individually, for instance::
     Vault password (playbook):
     Vault password (secret):
 
-And if you're too lazy to even type in two passwords, we can switch out the ``@prompt`` for a filename, and have Ansible read the password from a file.
+If you're working with larger systems you can use a password file, just switch out the ``@prompt`` for a filename, and Ansible will read the password from a file.
 
 The ``--vault-id`` can be used in lieu of the ``--vault-password-file`` or ``--ask-vault-pass`` options, or it can be used in combination with them.
 
